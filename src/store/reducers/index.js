@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import authReducer from './auth';
-import metadataReducer from './metadata';
+import securitiesReducer from './securities';
 
 export default combineReducers({
     auth: authReducer,
-    metadata: metadataReducer
+    securities: securitiesReducer
 });

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { getMetadata } from "../../store/actions/metadata";
+import { getSecurities } from "../../store/actions/securities";
 import { BeatLoader } from "react-spinners";
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -37,13 +37,13 @@ const useStyles = makeStyles({
   }
 });
 
-const Metadata = props => {
+const Securities = props => {
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
     useEffect(() => {
-        props.getMetadata();
+        props.getSecurities();
     }, []);
 
     const handleChangePage = (event, newPage) => {
@@ -86,7 +86,7 @@ const Metadata = props => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {props && props.data.length > 0 && props.data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                        {props && props.securities.length > 0 && props.securities.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                             return (
                                 <TableRow hover role="checkbox" tabIndex={-1} key={row._id}>
                                 {columns.map((column) => {
@@ -115,7 +115,7 @@ const Metadata = props => {
                 <TablePagination
                     rowsPerPageOptions={[10, 25, 100]}
                     component="div"
-                    count={props.data.length}
+                    count={props.securities.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onChangePage={handleChangePage}
@@ -127,10 +127,10 @@ const Metadata = props => {
 }
 
 const mapStateToProps = state => ({
-    data: state.metadata.data,
-    loading: state.metadata.loading,
+    securities: state.securities.securities,
+    loading: state.securities.loading,
     isAuthenticated: state.auth.isAuthenticated,
     isLoading: state.auth.isLoading
 });
   
-export default connect(mapStateToProps, { getMetadata })(Metadata);
+export default connect(mapStateToProps, { getSecurities })(Securities);

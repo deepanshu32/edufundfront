@@ -6,8 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 import Register from "./components/Authorization/Register";
 import Login from "./components/Authorization/Login";
 import Header from "./components/Common/Header";
-import Metadata from "./components/Data/Metadata";
-import Equitydata from "./components/Data/Equitydata";
+import Securities from "./components/Data/Securities";
+import SecurityData from "./components/Data/SecurityData";
 import { connect } from "react-redux";
 
 const Main = props => {
@@ -21,8 +21,8 @@ const Main = props => {
                 <Switch>
                     <Route exact path="/" component={Login} />
                     <Route exact path="/register" component={Register} />
-                    <Route exact path="/data" component={Metadata} />
-                    <Route exact path="/equity/:id" component={Equitydata} />
+                    <Route exact path="/data" component={Securities} />
+                    <Route exact path="/equity/:id" component={SecurityData} />
                 </Switch>
                 </div>
             </Router>
