@@ -16,10 +16,16 @@ const initialState = {
     oneYearSessions: [],
     threeYearSessions: [],
     fiveYearSessions: [],
-    oneDayStandardDeviation: null,
+    oneDayDeviation: null,
     oneDayReturns: null,
-    oneMonthStandardDeviation: null,
+    oneMonthDeviation: null,
     oneMonthReturns: null,
+    oneYearDeviation: null,
+    oneYearReturns: null,
+    threeYearDeviation: null,
+    threeYearReturns: null,
+    fiveYearDeviation: null,
+    fiveYearReturns: null,
 };
 
 export default function securitiesReducer(state = initialState, action) {
@@ -51,6 +57,16 @@ export default function securitiesReducer(state = initialState, action) {
                 oneYearSessions: action.payload.oneYearSessions,
                 threeYearSessions: action.payload.threeYearSessions,
                 fiveYearSessions: action.payload.fiveYearSessions,
+                oneDayDeviation: action.payload.oneDayDeviation,
+                oneDayReturns: action.payload.oneDayReturns,
+                oneMonthDeviation: action.payload.oneMonthDeviation,
+                oneMonthReturns: action.payload.oneMonthReturns,
+                oneYearDeviation: action.payload.oneYearDeviation,
+                oneYearReturns: action.payload.oneYearReturns,
+                threeYearDeviation: action.payload.threeYearDeviation,
+                threeYearReturns: action.payload.threeYearReturns,
+                fiveYearDeviation: action.payload.fiveYearDeviation,
+                fiveYearReturns: action.payload.fiveYearReturns,
                 loading: false
             }
         case EQUITY_DATA_ERROR:
@@ -63,6 +79,16 @@ export default function securitiesReducer(state = initialState, action) {
                 threeYearSessions: [],
                 fiveYearSessions: [],
                 security: null,
+                oneDayDeviation: null,
+                oneDayReturns: null,
+                oneMonthDeviation: null,
+                oneMonthReturns: null,
+                oneYearDeviation: null,
+                oneYearReturns: null,
+                threeYearDeviation: null,
+                threeYearReturns: null,
+                fiveYearDeviation: null,
+                fiveYearReturns: null,
                 loading: false
             }
         default:
