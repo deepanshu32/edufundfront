@@ -45,7 +45,6 @@ export const getSecurities = () => (dispatch, getState) => {
     axios
         .get(process.env.REACT_APP_BACKEND_URL+"securities", tokenConfig(getState))
         .then(res => {
-            console.log(res.data.securities);
             dispatch({
                 type: METADATA_SUCCESS,
                 payload: res.data
@@ -91,7 +90,6 @@ export const getSecurityData = (metadataId, startDate, endDate) => (dispatch, ge
                     new Date(session.date).getTime() <= oneMonthEndDate.toDate().getTime());
 
         data.oneMonthDeviation = getNDaysStandardDeviation(data.oneMonthSessions);
-        console.log(data.oneMonthSessions);
         data.oneMonthReturns = getReturns(data.oneMonthSessions[data.oneMonthSessions.length - 1].open, data.oneMonthSessions[0].close);
 
         let oneYearEndDate  = moment(data.oneDaySession.date);
@@ -119,7 +117,7 @@ export const getSecurityData = (metadataId, startDate, endDate) => (dispatch, ge
         data.fiveYearReturns = getReturns(data.fiveYearSessions[data.fiveYearSessions.length - 1].open, data.fiveYearSessions[0].close);
 
         data.oneDaySession = [data.sessions[0]];
-        console.log(data.oneDaySession);
+        
         dispatch({
             type: EQUITY_DATA_SUCCESS,
             payload: data

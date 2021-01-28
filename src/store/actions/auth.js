@@ -26,7 +26,6 @@ export const loadUser = () => (dispatch, getState) => {
     axios
         .get(process.env.REACT_APP_BACKEND_URL+"users/profile", tokenConfig(getState))
         .then(res => {
-            console.log(res.data.user);
             dispatch({
                 type: USER_LOADED,
                 payload: res.data
@@ -69,9 +68,12 @@ export const login = (email, password) => (dispatch) => {
             }
         })
         .catch(err => {
-            console.log(err.response.data);
             if(err.response && err.response.data && err.response.data.error){
                 toast.error(err.response.data.error);
+            }else if(err.response && err.response.data && err.response.data.errors){
+                err.response.data.errors.forEach(error => {
+                    toast.error(error.msg);
+                }); 
             }
             dispatch({
                 type: LOGIN_FAIL
@@ -114,8 +116,13 @@ export const register = (userData) => (dispatch) => {
         })
         .catch(err => {
             console.log(err.response);
-            if(err.response.data.error)
+            if(err.response && err.response.data && err.response.data.error){
                 toast.error(err.response.data.error);
+            }else if(err.response && err.response.data && err.response.data.errors){
+                err.response.data.errors.forEach(error => {
+                    toast.error(error.msg);
+                }); 
+            }
             dispatch({
                 type: REGISTER_FAIL
             });

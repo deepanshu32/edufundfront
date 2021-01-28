@@ -1,14 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
@@ -34,12 +28,18 @@ const Register = props => {
 
     const onSubmit = e => {
         e.preventDefault();
-        if(state.email == ""){
-            toast.error("Please provide email!");
+        if(state.firstName === ""){
+            return toast.error("First name is required!");
+        }else if(state.lastName === ""){
+            return toast.error("Last name is required!");
+        }else if(state.email === ""){
+            return toast.error("Please provide email!");
+        }else if(state.mobile === ""){
+            return toast.error("Mobile number is required!");
         }else{
-            if(state.password == ""){
+            if(state.password === ""){
                 toast.error("Please provide password!");
-            }else if(state.password != state.cpassword){
+            }else if(state.password !== state.cpassword){
                 toast.error("Passwords do not match!");
             }else{
                 props.register({

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { getSecurityData } from "../../store/actions/securities";
@@ -97,7 +97,6 @@ const SecurityData = props => {
 
     let { id } = useParams();
 
-    console.log(id);
     useEffect(() => {
         props.getSecurityData(id);
     }, []);
@@ -156,10 +155,10 @@ const SecurityData = props => {
         <div className={classes.root}>
             <div style={{marginTop: 15}}>
                 {props.security
-                    ? <p style={{textAlign: "left", marginLeft: 30, marginTop: 20}}>
+                    ? <div style={{textAlign: "left", marginLeft: 30, marginTop: 20}}>
                         <b>{props.security.securityName}</b>
-                    </p>
-                    : <p></p>
+                    </div>
+                    : <span></span>
                 }
             </div>
             <div className={classes3.root} style={{marginTop: 20}}>
