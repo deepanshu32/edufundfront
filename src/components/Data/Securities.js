@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { getSecurities } from "../../store/actions/securities";
@@ -12,6 +12,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { makeStyles } from '@material-ui/core/styles';
+import InfoIcon from '@material-ui/icons/Info';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const columns = [
   { id: 'nasdaqTraded', label: 'Nasdaq Traded'},
@@ -25,7 +27,8 @@ const columns = [
   { id: 'financialStatus', label: 'Financial Status'},
   { id: 'cqsSymbol', label: 'CQS Symbol'},
   { id: 'nasdaqSymbol', label: 'NASDAQ Symbol'},
-  { id: 'nextShares', label: 'Next Shares'}
+  { id: 'nextShares', label: 'Next Shares'},
+  { id: 'action', label: 'Action'}
 ];
 
 const useStyles = makeStyles({
@@ -91,11 +94,13 @@ const Securities = props => {
                                 <TableRow hover role="checkbox" tabIndex={-1} key={row._id}>
                                 {columns.map((column) => {
                                     const value = row[column.id];
-                                    if(column.id === "symbol"){
+                                    if(column.id === "action"){
                                         let route = `/equity/${row._id}`
                                         return (
                                             <TableCell key={column.id}>
-                                                <a href={route}>{value}</a>
+                                                <Tooltip title="View Details">
+                                                    <a href={route} style={{color: "#66c2ff"}}><InfoIcon /></a>
+                                                </Tooltip>
                                             </TableCell>
                                         );
                                     }else{

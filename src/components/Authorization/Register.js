@@ -15,6 +15,7 @@ import { connect } from "react-redux";
 import { register } from "../../store/actions/auth";
 import { toast } from "react-toastify";
 import { BeatLoader } from "react-spinners";
+import logo1  from "../../assets/images/logo1.png"
 
 const Register = props => {
 
@@ -52,7 +53,7 @@ const Register = props => {
         }
     };
 
-    if (props.isAuthenticated) {
+    if (props.isAuthenticated && props.token) {
         return <Redirect to="/data" />;
     }
 
@@ -72,12 +73,7 @@ const Register = props => {
                 <Container component="main" style={{maxWidth: 500}}>
                     <CssBaseline />
                     <div>
-                        <br />
-                        <br />
-                        <br />
-                        <b><i><span style={{ fontSize: 30, fontWeight: 700, color: "#1a8cff", marginLeft: 15}}>StoxKart</span></i></b>
-                        <br />
-                        <br />
+                        <img src={logo1} alt="StoxKart" />
                         <Typography component="h1" variant="h5">
                         Register
                         </Typography>
@@ -179,6 +175,7 @@ const Register = props => {
 }
 
 const mapStateToProps = state => ({
+    token: state.auth.token,
     user: state.auth.user,
     isAuthenticated: state.auth.isAuthenticated,
     isLoadingUser: state.auth.isLoading

@@ -35,6 +35,7 @@ export default function authReducer(state = initialState, action) {
             localStorage.setItem("token", action.payload.token);
             return {
                 ...state,
+                token: action.payload.token,
                 user: action.payload.user,
                 isAuthenticated: true,
                 isLoading: false

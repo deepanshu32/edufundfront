@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import { connect } from "react-redux";
 import { logout } from "../../store/actions/auth";
 import Button from '@material-ui/core/Button';
+import mainLogo from '../../assets/images/mainLogo.png'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -32,10 +33,10 @@ const Header = props => {
         <div className={classes.root}>
             <AppBar position="static">
             <Toolbar>
-                <Typography variant="h6" className={classes.title}>
-                <strong>Stocks and ETFs Data</strong>
-                </Typography>
-                { props.isAuthenticated ? <Button style={{float: "right"}} onClick={props.logout} variant="contained" color="danger"> Logout </Button>: <div>
+                <div className={classes.title}>
+                    <a href="/data"><img src={mainLogo} alt="StoxKart" style={{height: 45, width: 130}} /></a>
+                </div>
+                { props.isAuthenticated ? <div><a style={{fontSize: 18, lineHeight: 2}} href="/data"><strong>Securities</strong></a> <Button style={{float: "right", marginLeft: 20}} onClick={props.logout} variant="contained" color="danger"> Logout </Button></div>: <div>
                     <a style={{fontSize:18}} href="/"><strong>Login</strong></a>
                     <a style={{fontSize:18, marginLeft: 20}} href="/register"><strong>Register</strong></a>
                 </div>}

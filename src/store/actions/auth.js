@@ -33,8 +33,10 @@ export const loadUser = () => (dispatch, getState) => {
             });
         })
         .catch(err => {
-            toast.error("Session expired. Please login again");
             console.log(err);
+            if(localStorage.getItem('token')){
+                toast.error("Session expired. Please login again");
+            }
             dispatch({
                 type: AUTH_ERROR
             });
